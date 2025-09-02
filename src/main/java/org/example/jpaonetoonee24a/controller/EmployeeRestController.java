@@ -26,12 +26,18 @@ public class EmployeeRestController {
         return employeeRepository.findAll();
     }
 
-    @PostMapping("employee")
+    @PostMapping("employeeadv")
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee addEmployee(@RequestBody Employee employee) {
+    public Employee addEmployeeadv(@RequestBody Employee employee) {
         User usr = employee.getUser();
         usr = userRepository.save(usr);
         employee.setUser(usr);
+        return employeeRepository.save(employee);
+    }
+
+    @PostMapping("employee")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Employee addEmployee(@RequestBody Employee employee) {
         return employeeRepository.save(employee);
     }
 
